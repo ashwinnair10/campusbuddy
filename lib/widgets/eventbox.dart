@@ -1,9 +1,25 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:campusbuddy/data/constants.dart';
 import 'package:campusbuddy/data/test.dart';
 import 'package:flutter/material.dart';
 
-class EventBox extends StatelessWidget{
-  const EventBox({super.key});
+class EventBox extends StatefulWidget{
+  Event event=Event("","","","","",false);
+  EventBox(Event e){
+    event=e;
+  }
+
+  @override
+  State<EventBox> createState() => _EventBoxState();
+}
+
+class _EventBoxState extends State<EventBox> {
+  void change(){
+    setState((){
+      widget.event.inter=!widget.event.inter;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,10 +33,10 @@ class EventBox extends StatelessWidget{
         },
         backgroundColor: Colors.white,
         collapsedBackgroundColor: Colors.white,
-        title:Text(title),
+        title:Text(widget.event.title),
         maintainState: true,
         showTrailingIcon: true,
-        leading: const CircleAvatar(radius: 10,),
+        leading: const CircleAvatar(radius: 10,backgroundColor: Colors.grey,),
         initiallyExpanded: true,
         children: [
           Container(
@@ -53,11 +69,11 @@ class EventBox extends StatelessWidget{
                         children: [
                           const Icon(Icons.date_range),
                           const SizedBox(width: 5,),
-                          Text(date),
+                          Text(widget.event.date),
                           const Spacer(),
                           const Icon(Icons.access_time),
                           const SizedBox(width: 5,),
-                          Text(time),
+                          Text(widget.event.time),
                         ],
                       ),
                       const SizedBox(height: 5,),
@@ -66,7 +82,7 @@ class EventBox extends StatelessWidget{
                           const Icon(Icons.location_on),
                           const SizedBox(width: 5,),
                           Text(
-                            venue,
+                            widget.event.venue,
                             style: const TextStyle(
                               overflow: TextOverflow.ellipsis,
                             ),
@@ -74,8 +90,38 @@ class EventBox extends StatelessWidget{
                           ),
                         ],
                       ),
-                      
-                      // TextButton(onPressed: ()=>{}, child: Text("See more"))
+                      Row(
+                        children: [
+                          ElevatedButton(
+                            onPressed: ()=>{
+                              change()
+                            },
+                            style: ButtonStyle(
+                              shape: WidgetStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.circular(5),),),
+                              backgroundColor: WidgetStatePropertyAll(Colors.red.shade400),
+                            ), 
+                            child: Row(
+                              children: [
+                                const Text("Interested",style: TextStyle(color: Colors.white),),
+                                const SizedBox(width: 5,),
+                                if(!widget.event.inter)
+                                const Icon(Icons.star_border_rounded,color: Colors.white,)
+                                else
+                                const Icon(Icons.star_rounded,color: Colors.white,),
+                              ],
+                            ),
+                          ),
+                          const Spacer(),
+                          ElevatedButton(
+                            onPressed: ()=>{},
+                            style: ButtonStyle(
+                              shape: WidgetStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.circular(5),),),
+                              backgroundColor: WidgetStatePropertyAll(Colors.red.shade400),
+                            ), 
+                            child: const Text("Register Now",style: TextStyle(color: Colors.white),),
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                 ),
