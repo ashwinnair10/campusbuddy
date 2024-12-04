@@ -19,10 +19,10 @@ class _MainScreenState extends State<MainScreen> {
     setState(() {
       index=i;
       if(i==0){
-        currentwidget=HomePage();
+        currentwidget=const HomePage();
       }
       if(i==1){
-        currentwidget=EventPage();
+        currentwidget=const EventPage();
       }
       if(i==2){
         currentwidget=ResourcePage();

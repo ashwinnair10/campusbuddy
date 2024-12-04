@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 
 class EventBox extends StatefulWidget{
   Event event=Event("","","","","",false);
-  EventBox(Event e){
+  EventBox(Event e, {super.key}){
     event=e;
   }
 

@@ -1,4 +1,5 @@
 import 'package:campusbuddy/data/constants.dart';
+import 'package:campusbuddy/data/functions.dart';
 import 'package:campusbuddy/data/test.dart';
 import 'package:campusbuddy/widgets/circleavatar.dart';
 import 'package:campusbuddy/widgets/eventbox.dart';
@@ -6,24 +7,38 @@ import 'package:campusbuddy/widgets/searchbar.dart';
 import 'package:flutter/material.dart';
 
 class InterestedEvents extends StatefulWidget{
+  const InterestedEvents({super.key});
+
   @override
   State<InterestedEvents> createState() => _InterestedEventsState();
 }
 
 class _InterestedEventsState extends State<InterestedEvents> {
-  List __events=events;
+  List<Event> __events=events;
   void findInterested(){
     setState(() {
       __events=events.where((s)=>s.inter==true).toList();
     });
   }
-  late List _events=__events;
+  late List<Event> _events=__events;
   void set(String o){
     setState(() {
-      if(o!="ALL")
-      _events=__events.where((s)=>s.org==o).toList();
-      else
-      _events=__events;
+      if(o!="ALL") {
+        _events=__events.where((s)=>s.org==o).toList();
+      } 
+      else {
+        _events=__events;
+      }
+    });
+  }
+  void search(String o){
+    setState(() {
+      if(o!="") {
+        _events=eventSearch(__events,o);
+      } 
+      else {
+        _events=__events;
+      }
     });
   }
   @override
@@ -31,10 +46,10 @@ class _InterestedEventsState extends State<InterestedEvents> {
     findInterested();
     return Column(
       children:[
-        Searchbar(),
+        Searchbar(search),
         Padding(
-          padding: EdgeInsets.fromLTRB(10,20,10,0),
-          child:Container(
+          padding: const EdgeInsets.fromLTRB(10,20,10,0),
+          child:SizedBox(
             width: width,
             height:90,
             child:ListView.builder(
@@ -47,7 +62,7 @@ class _InterestedEventsState extends State<InterestedEvents> {
         ),
         ListView.builder(itemBuilder: (context, index) {
           return EventBox(_events[index]);
-        },itemCount: _events.length,shrinkWrap: true,physics: NeverScrollableScrollPhysics(),),
+        },itemCount: _events.length,shrinkWrap: true,physics: const NeverScrollableScrollPhysics(),),
       ],
     );
   }

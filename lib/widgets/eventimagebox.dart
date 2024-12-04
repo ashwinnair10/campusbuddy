@@ -2,10 +2,13 @@ import 'package:campusbuddy/data/constants.dart';
 import 'package:flutter/material.dart';
 
 class EventImageBox extends StatelessWidget{
+  const EventImageBox({super.key});
+
   @override
   Widget build(BuildContext context){
-    return Padding(padding: EdgeInsets.all(10),
+    return Padding(padding: const EdgeInsets.all(10),
       child:Stack(
+        alignment: Alignment.bottomRight,
         children: [
           Container(
             width: width,
@@ -14,7 +17,6 @@ class EventImageBox extends StatelessWidget{
           ),
           Text("EventName",style: TextStyle(fontSize: width/10),)
         ],
-        alignment: Alignment.bottomRight,
       ),
     );
   }

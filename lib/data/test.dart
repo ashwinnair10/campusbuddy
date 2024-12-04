@@ -15,7 +15,7 @@ class Event{
     inter=b;
   }
 }
-List events=[
+List<Event> events=[
   Event(
     "Event1",
     "20/12/24",
