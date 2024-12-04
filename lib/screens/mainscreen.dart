@@ -36,25 +36,25 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context){
     return Scaffold(
-      endDrawerEnableOpenDragGesture: false,
+      // endDrawerEnableOpenDragGesture: false,
       backgroundColor: const Color.fromARGB(255, 27, 27, 27),
       body: currentwidget,
-      endDrawer: Drawer(
-        width: MediaQuery.of(context).size.width/1.5,
-        backgroundColor: const Color.fromARGB(255, 194, 194, 194),
-        child: ListView(
-          padding: const EdgeInsets.all(0),
-          children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(color: Color.fromARGB(255, 27, 27, 27),),
-              child: Text("NITC",style: TextStyle(color: Colors.white,fontSize: 40,fontWeight: FontWeight.bold),),
-            ),
-            ListTile(title: const Text("Book a venue"),onTap: ()=>{},splashColor: const Color.fromARGB(255, 172, 172, 172),visualDensity: const VisualDensity(vertical: -4),),
-            // ListTile(title: const Text("Schedule an event"),onTap: ()=>{},splashColor: const Color.fromARGB(255, 172, 172, 172),visualDensity: const VisualDensity(vertical: -4),),
-            ListTile(title: const Text("Facility Availabilty "),onTap: ()=>{},splashColor: const Color.fromARGB(255, 172, 172, 172),subtitle: const Text("Check if labs/classes are open"),visualDensity: const VisualDensity(vertical: -4),)
-          ],
-        ),
-      ),
+      // endDrawer: Drawer(
+      //   width: MediaQuery.of(context).size.width/1.5,
+      //   backgroundColor: const Color.fromARGB(255, 194, 194, 194),
+      //   child: ListView(
+      //     padding: const EdgeInsets.all(0),
+      //     children: [
+      //       const DrawerHeader(
+      //         decoration: BoxDecoration(color: Color.fromARGB(255, 27, 27, 27),),
+      //         child: Text("NITC",style: TextStyle(color: Colors.white,fontSize: 40,fontWeight: FontWeight.bold),),
+      //       ),
+      //       ListTile(title: const Text("Book a venue"),onTap: ()=>{},splashColor: const Color.fromARGB(255, 172, 172, 172),visualDensity: const VisualDensity(vertical: -4),),
+      //       // ListTile(title: const Text("Schedule an event"),onTap: ()=>{},splashColor: const Color.fromARGB(255, 172, 172, 172),visualDensity: const VisualDensity(vertical: -4),),
+      //       ListTile(title: const Text("Facility Availabilty "),onTap: ()=>{},splashColor: const Color.fromARGB(255, 172, 172, 172),subtitle: const Text("Check if labs/classes are open"),visualDensity: const VisualDensity(vertical: -4),)
+      //     ],
+      //   ),
+      // ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         backgroundColor: Colors.transparent,

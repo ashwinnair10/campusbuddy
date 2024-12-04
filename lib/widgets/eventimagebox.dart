@@ -1,8 +1,12 @@
 import 'package:campusbuddy/data/constants.dart';
+import 'package:campusbuddy/data/test.dart';
 import 'package:flutter/material.dart';
 
 class EventImageBox extends StatelessWidget{
-  const EventImageBox({super.key});
+  Event event=Event("","","","","",false);
+  EventImageBox(Event e){
+    event=e;
+  }
 
   @override
   Widget build(BuildContext context){
@@ -11,11 +15,25 @@ class EventImageBox extends StatelessWidget{
         alignment: Alignment.bottomRight,
         children: [
           Container(
-            width: width,
+            // width: width-20,
             height: width*0.67,
-            color: Colors.blue,
+            decoration: BoxDecoration(gradient: LinearGradient(colors: [Colors.red,Colors.black])),
           ),
-          Text("EventName",style: TextStyle(fontSize: width/10),)
+          SizedBox(
+            height: width*0.67,
+            width: width*0.67,
+            child:Padding(
+              padding: EdgeInsets.all(10),
+              child:Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Text(event.title,style: TextStyle(fontSize: width/10,fontWeight: FontWeight.bold,overflow: TextOverflow.ellipsis,color: Colors.white),maxLines: 1,),
+                  Text("by ${event.org}",style: TextStyle(color: Colors.white,fontWeight: FontWeight.w700,overflow: TextOverflow.ellipsis,fontSize: width/25),maxLines: 1,),
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     );

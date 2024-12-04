@@ -41,7 +41,7 @@ dependencies:
   firebase_database:
   firebase_storage:
   firebase_analytics:
-  
+  carousel_slider:
 dev_dependencies:
   flutter_test:
     sdk: flutter
