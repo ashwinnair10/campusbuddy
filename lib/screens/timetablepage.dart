@@ -7,10 +7,12 @@ class TimetablePage extends StatefulWidget {
 }
 
 class _TimetablePageState extends State<TimetablePage> {
+  TextEditingController _subjectNameController = TextEditingController();
   String _selectedCategory = 'Mon';
   final List<String> days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   late Map<String, bool> selectedDays;
   late Map<String, TimeOfDay?> selectedTimes;
+  Map<String, Map<TimeOfDay, String>> subjects = {};
   void initializeMap() {
     selectedDays = {
       'Mon': false,
@@ -30,18 +32,32 @@ class _TimetablePageState extends State<TimetablePage> {
     };
   }
 
+  void _delete(String day, String subject, TimeOfDay time) {
+    setState(() {
+      if (subjects[day] != null) {
+        subjects[day]!.remove(time);
+      }
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
+    void getMap() {
+      setState(() {
+        subjects = subjects;
+      });
+    }
     return Stack(children: [
       Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            padding: EdgeInsets.fromLTRB(16, 10, 20, 10),
+            padding: EdgeInsets.fromLTRB(16, 30, 20, 10),
             child: const Text(
               "Your timetable",
               style: TextStyle(
-                fontSize: 26,
+                fontSize: 22,
                 fontWeight: FontWeight.w500,
                 color: Color.fromARGB(255, 247, 243, 243),
               ),
@@ -64,10 +80,15 @@ class _TimetablePageState extends State<TimetablePage> {
           Divider(
             color: Colors.grey, // Color of the line
             thickness: 1, // Thickness of the line
-            indent: 16, // Empty space to the leading edge
-            endIndent: 16, // Empty space to the trailing edge
+            indent: 10, // Empty space to the leading edge
+            endIndent: 10, // Empty space to the trailing edge
           ),
-          Expanded(child: BuildTimeTable()),
+          Expanded(
+              child: BuildTimeTable(
+            deleteButton: _delete,
+            day: _selectedCategory,
+            subjects: subjects[_selectedCategory],
+          )),
         ],
       ),
       Container(
@@ -84,10 +105,8 @@ class _TimetablePageState extends State<TimetablePage> {
                     Future<void> _selectTime(
                         BuildContext context, String day) async {
                       final TimeOfDay? pickedTime = await showTimePicker(
-                        
                         context: context,
                         initialTime: selectedTimes[day] ?? TimeOfDay.now(),
-
                       );
                       if (pickedTime != null) {
                         setState(() {
@@ -127,6 +146,7 @@ class _TimetablePageState extends State<TimetablePage> {
                           ),
                           SizedBox(height: 20),
                           TextField(
+                            controller: _subjectNameController,
                             decoration: InputDecoration(
                               labelText: 'Subject Name',
                               border: OutlineInputBorder(),
@@ -155,11 +175,14 @@ class _TimetablePageState extends State<TimetablePage> {
                                               value: selectedDays[day],
                                               onChanged: (value) {
                                                 setState(() {
+                                                  if (value == true) {
+                                                    selectedTimes[day] =
+                                                        null; // Clear the time when deselected
+                                                  }
+
                                                   selectedDays[day] =
                                                       !selectedDays[
                                                           day]!; //null check
-                                                  print(
-                                                      "Selected Days:$day - ${selectedDays[day]}");
                                                 });
                                               },
                                               checkColor: Colors.black,
@@ -177,7 +200,8 @@ class _TimetablePageState extends State<TimetablePage> {
                                                   ? selectedTimes[day]!
                                                       .format(context)
                                                   : 'Set Time',
-                                                  style: TextStyle(color: Colors.black),
+                                              style: TextStyle(
+                                                  color: Colors.black),
                                             ),
                                           ),
                                       ],
@@ -191,7 +215,23 @@ class _TimetablePageState extends State<TimetablePage> {
                           ElevatedButton(
                             onPressed: () {
                               // Handle submission here
+                              setState(() {
+                                selectedTimes.forEach((day, time) {
+                                  if (time != null) {
+                                    if (!subjects.containsKey(day)) {
+                                      subjects[day] =
+                                          {}; // Initialize new map if day doesn't exist
+                                    }
+                                    // Add the subject and time
+                                    subjects[day]![time] =
+                                        _subjectNameController.text;
+                                  }
+                                });
+                              });
+                              print("$subjects");
                               Navigator.pop(context);
+                              _subjectNameController.clear();
+                              getMap();
                             },
                             child: Text('Done'),
                             style: ElevatedButton.styleFrom(
@@ -240,7 +280,7 @@ class _TimetablePageState extends State<TimetablePage> {
         child: Text(
           category,
           style: TextStyle(
-            fontSize: 22,
+            fontSize: 20,
             fontWeight: _selectedCategory == category
                 ? FontWeight.w800
                 : FontWeight.w500,

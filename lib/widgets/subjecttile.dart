@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-
+typedef MyCustomCallback = void Function(String, TimeOfDay);
 class SubjectTile extends StatelessWidget {
+  final MyCustomCallback onButtonPressed;
   final String subject;
-  final String time;
+  final TimeOfDay time;
   @override
   const SubjectTile({
     super.key,
+    required this.onButtonPressed,
     required this.subject,
     required this.time
   });
@@ -24,7 +26,12 @@ class SubjectTile extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
           Text(subject, style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500, color: Colors.white),),
-          Text(time, style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500, color: Colors.white),)
+          Row(
+            children: [
+              Text(time.format(context), style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500, color: Colors.white),),
+              IconButton(icon: Icon(Icons.delete, color: Colors.white,), onPressed: (){onButtonPressed(subject,time);})
+            ],
+          )
         ],),
       ),
     );
