@@ -1,3 +1,4 @@
+import 'package:campusbuddy/data/constants.dart';
 import 'package:campusbuddy/data/test.dart';
 import 'package:campusbuddy/widgets/notificationbox.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -7,13 +8,15 @@ class NotificationList extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 250,
+      width: width,
+      height: 200,
       child:CarouselSlider(
         items: [
           for(int i=0;i<notifications.length;i++)
           NotificationBox(notifications[i])
         ],carouselController: CarouselSliderController(),
         options: CarouselOptions(
+          aspectRatio: 2.5,
           padEnds: true,
           autoPlayAnimationDuration: Duration(seconds:10),
           autoPlayCurve: Curves.linear,

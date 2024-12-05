@@ -41,6 +41,7 @@ class _AllEventsState extends State<AllEvents> {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
       children:[
         Searchbar(search),
         Padding(

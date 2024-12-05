@@ -45,6 +45,7 @@ class _InterestedEventsState extends State<InterestedEvents> {
   Widget build(BuildContext context) {
     findInterested();
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
       children:[
         Searchbar(search),
         Padding(

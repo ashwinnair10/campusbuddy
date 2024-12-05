@@ -22,7 +22,7 @@ class NotificationBox extends StatelessWidget{
                 Text(title,maxLines: 1,style: const TextStyle(color: Colors.red,overflow: TextOverflow.ellipsis,fontWeight: FontWeight.bold,fontSize: 16),),
               ],
             ),
-          Text(content,textAlign: TextAlign.justify,style: const TextStyle(color: Colors.black,fontSize: 14,overflow: TextOverflow.ellipsis),maxLines: 4,),
+          Text(content,textAlign: TextAlign.justify,style: const TextStyle(color: Colors.black,fontSize: 14,overflow: TextOverflow.ellipsis),maxLines: 3,),
           ],
         ),
       ),
