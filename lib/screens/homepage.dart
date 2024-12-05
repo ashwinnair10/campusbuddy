@@ -1,7 +1,8 @@
-import 'package:campusbuddy/data/constants.dart';
 import 'package:campusbuddy/data/test.dart';
+import 'package:campusbuddy/screens/profilepage.dart';
 import 'package:campusbuddy/widgets/circlebutton.dart';
 import 'package:campusbuddy/widgets/eventimagebox.dart';
+import 'package:campusbuddy/widgets/notificationlist.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
@@ -28,11 +29,20 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   const Text("CampusBuddy",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20),),
                   const Spacer(),
-                  IconButton(onPressed: ()=>{},icon: const Icon(Icons.account_circle,color: Colors.white,),),
+                  IconButton(onPressed: ()=>{Navigator.push(context,MaterialPageRoute(builder: (context)=>ProfilePage()))},icon: const Icon(Icons.account_circle,color: Colors.white,),),
                 ],
               ),
               actions: [Container()],
             ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                CircleButton("Check Availability"),
+                CircleButton("Book Venue"),
+                CircleButton("Directory"),
+              ],
+            ), 
+            Divider(color: Colors.grey.shade600,),
             CarouselSlider(
               items: [
                 for(int i=0;i<events.length;i++)
@@ -42,18 +52,15 @@ class _HomePageState extends State<HomePage> {
                 autoPlay: true,
                 disableCenter: true,
                 enlargeCenterPage: false,
+                viewportFraction:  1,
               ),
             ),
             Divider(color: Colors.grey.shade600,),
-            SizedBox(height: 20,),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                CircleButton("Check Availability"),
-                CircleButton("Book Venue"),
-                CircleButton("Directory"),
-              ],
+            Padding(
+              padding: EdgeInsets.all(10),
+              child: Text("Notifications",style: TextStyle(color: Colors.white,fontSize: 25,fontWeight: FontWeight.bold),),
             ),
+            NotificationList(),
           ],
         )
       ),

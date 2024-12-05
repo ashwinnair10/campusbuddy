@@ -57,7 +57,7 @@ class _MainScreenState extends State<MainScreen> {
       // ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        backgroundColor: Colors.transparent,
+        backgroundColor: Color.fromARGB(255, 27, 27, 27),
         elevation: 0,
         enableFeedback: false,
         items:const [

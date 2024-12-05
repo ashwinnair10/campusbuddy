@@ -52,3 +52,9 @@ List<Event> events=[
 List orgs=[
   "ALL","CSEA","ECEA","IEEE","EEA","MEA","CEA"
 ];
+
+List notifications=[
+  "Exam scheduled in CCC T1",
+  "SSL reserved for Training",
+  "Tathva 2024",
+];
