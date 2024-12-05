@@ -13,5 +13,9 @@ Facility microc = Facility("Micro Canteen", TimeOfDay(hour: 10, minute: 00), Tim
 Facility gym = Facility("GYM", TimeOfDay(hour: 05, minute: 00), TimeOfDay(hour: 18, minute: 00), true);
 Facility coops = Facility("Cooperative Store", TimeOfDay(hour: 09, minute: 00), TimeOfDay(hour: 20, minute: 00), true);
 
-ssl.addEvent("Exam", TimeOfDay());
-
+class AdminFeature{
+  AdminFeature(){}
+  void addEvent(Facility f,Occupied o){
+    f.addEvent(o.eventName,o.stime,o.etime);
+  }
+}

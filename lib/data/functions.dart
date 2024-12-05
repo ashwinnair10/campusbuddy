@@ -16,7 +16,7 @@ List<Event> eventSearch(List<Event> events,String o){
 
 void circlebuttonnavigator(String s,BuildContext context){
   if(s=="Check Availability"){
-    Navigator.push(context,MaterialPageRoute(builder: (context) => CheckAvailabiltyPage(),));
+    Navigator.push(context,MaterialPageRoute(builder: (context) => CheckAvailabilityPage(),));
   }
   if(s=="Book Venue"){
     Navigator.push(context,MaterialPageRoute(builder: (context) => BookVenuePage(),));
