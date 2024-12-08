@@ -1,4 +1,3 @@
-import 'package:campusbuddy/screens/timetablepage.dart';
 import 'package:flutter/material.dart';
 typedef MyCustomCallback = void Function(Map<String, Map<TimeOfDay, String>>);
 TextEditingController _subjectNameController = TextEditingController();

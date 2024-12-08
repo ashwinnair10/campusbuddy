@@ -37,7 +37,7 @@ class _SearchbarState extends State<Searchbar> {
       style: const TextStyle(color: Colors.white),
       decoration: InputDecoration(
         constraints: BoxConstraints(
-          maxWidth: width-40,
+          maxWidth: width-60,  //made slight difference (40->60) so that it can fit in checkavl page
           maxHeight: 40
         ),
         border: OutlineInputBorder(

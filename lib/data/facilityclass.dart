@@ -1,5 +1,14 @@
 import 'package:flutter/material.dart';
-import 'admin.dart';
+
+extension TimeOfDayExtension on TimeOfDay {
+  int compareTo(TimeOfDay other) {
+    if (hour < other.hour) return -1;
+    if (hour > other.hour) return 1;
+    if (minute < other.minute) return -1;
+    if (minute > other.minute) return 1;
+    return 0;
+  }
+}
 
 class Facility{
   String name="";
@@ -30,6 +39,26 @@ class Facility{
     Occupied oe = Occupied(en, st, et);
     oevents.add(oe);
   }
+
+  void sortEvents(){
+    oevents.sort((a,b){
+      return a.stime.compareTo(b.stime);
+    });
+  }
+
+  Occupied? searchNext(TimeOfDay t){
+    if (oevents.isEmpty) return null;
+    sortEvents();
+    for (var o in oevents){
+      if (o.stime.compareTo(t)<=0 && o.etime.compareTo(t)>0 ){
+        return o;
+      }
+      if (o.stime.compareTo(t)>=0){
+        return o;
+      }
+    }
+    return null;
+  }
 }
 
 class Occupied{
@@ -54,5 +83,4 @@ Facility microc = Facility("Micro Canteen", TimeOfDay(hour: 10, minute: 00), Tim
 Facility gym = Facility("GYM", TimeOfDay(hour: 05, minute: 00), TimeOfDay(hour: 18, minute: 00), true);
 Facility coops = Facility("Cooperative Store", TimeOfDay(hour: 09, minute: 00), TimeOfDay(hour: 20, minute: 00), true);
 
-
-
+List<Facility> listOfFacilities = [ssl,nsl,t1,t2,t3,lib,mainc,minic,microc, gym, coops];
