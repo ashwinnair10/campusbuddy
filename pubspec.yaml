@@ -43,6 +43,7 @@ dependencies:
   firebase_analytics:
   carousel_slider:
   syncfusion_flutter_calendar:
+  simple_time_range_picker:
 dev_dependencies:
   flutter_test:
     sdk: flutter

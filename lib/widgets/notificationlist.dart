@@ -16,7 +16,7 @@ class NotificationList extends StatelessWidget{
           NotificationBox(notifications[i])
         ],carouselController: CarouselSliderController(),
         options: CarouselOptions(
-          aspectRatio: 2.5,
+          aspectRatio: 3,
           padEnds: true,
           autoPlayAnimationDuration: Duration(seconds:10),
           autoPlayCurve: Curves.linear,
