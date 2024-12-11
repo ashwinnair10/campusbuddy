@@ -1,6 +1,6 @@
 import 'package:campusbuddy/data/test.dart';
 import 'package:campusbuddy/screens/profilepage.dart';
-import 'package:campusbuddy/widgets/circlebutton.dart';
+import 'package:campusbuddy/widgets/featurebutton.dart';
 import 'package:campusbuddy/widgets/eventimagebox.dart';
 import 'package:campusbuddy/widgets/notificationlist.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -51,9 +51,9 @@ class _HomePageState extends State<HomePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                CircleButton("Check Availability"),
-                CircleButton("Book Venue"),
-                CircleButton("Directory"),
+                FeatureButton("Check Availability"),
+                FeatureButton("Book Venue"),
+                FeatureButton("Directory"),
               ],
             ), 
             // Divider(color: Colors.grey.shade600,),

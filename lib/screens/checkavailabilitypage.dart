@@ -1,6 +1,6 @@
 import 'package:campusbuddy/data/facilityclass.dart';
 import 'package:campusbuddy/widgets/facilitybox.dart';
-import 'package:campusbuddy/widgets/searchbar.dart';
+import 'package:campusbuddy/widgets/searchbar1.dart';
 import 'package:flutter/material.dart';
 
 class CheckAvailabilityPage extends StatefulWidget {
@@ -57,7 +57,7 @@ class _CheckAvailabilityPageState extends State<CheckAvailabilityPage> {
                       ),
                     ),
                   ),
-                  Searchbar(search),
+                  Searchbar1(search),//created new searchbar=>searchbar1.dart for this page
                 ],
               ),
             ),

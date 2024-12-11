@@ -13,20 +13,24 @@ class Circleavatar extends StatelessWidget{
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(5,0,5,0),
-      child:Column(
-          children: [
-            InkResponse(
-              splashFactory: InkRipple.splashFactory,
-              radius: 40,
-              child:const CircleAvatar(radius: 30,backgroundColor: Colors.grey,),
-              onTap: (){
-                func(org);
-                print("$org tapped");
-              },
-            ),
-            Text(org,style: const TextStyle(color: Colors.white,),),
-          ],
+      child:InkResponse(
+        splashFactory: InkRipple.splashFactory,
+        radius: 40,
+        child:Container(
+          width: 80,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: const Color.fromARGB(97, 7, 156, 255),
+          ),
+          child: Center(
+            child: Text(org),
+          ),
         ),
+        onTap: (){
+          func(org);
+          print("$org tapped");
+        },
+      ),
     );
   }
 }

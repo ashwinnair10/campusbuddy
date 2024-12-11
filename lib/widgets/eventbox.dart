@@ -24,13 +24,19 @@ class _EventBoxState extends State<EventBox> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:const EdgeInsets.all(10),
+      padding:const EdgeInsets.fromLTRB(0,0,0,10),
       child: ExpansionTile(
         onExpansionChanged: (value)=>{
           if(value)
           print("expanded"),
 
         },
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10)
+        ),
+        collapsedShape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10)
+        ),
         backgroundColor: Colors.white,
         collapsedBackgroundColor: Colors.white,
         title:Text(widget.event.title),
@@ -52,6 +58,7 @@ class _EventBoxState extends State<EventBox> {
                   decoration: const BoxDecoration(
                     gradient: LinearGradient(colors: [Colors.red,Colors.black])
                   ),
+                  child:Image.network(widget.event.url,fit: BoxFit.cover,),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(10),
@@ -98,7 +105,7 @@ class _EventBoxState extends State<EventBox> {
                             },
                             style: ButtonStyle(
                               shape: WidgetStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.circular(5),),),
-                              backgroundColor: WidgetStatePropertyAll(Colors.red.shade400),
+                              backgroundColor: WidgetStatePropertyAll(Colors.blue),
                             ), 
                             child: Row(
                               children: [
@@ -116,7 +123,7 @@ class _EventBoxState extends State<EventBox> {
                             onPressed: ()=>{},
                             style: ButtonStyle(
                               shape: WidgetStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.circular(5),),),
-                              backgroundColor: WidgetStatePropertyAll(Colors.red.shade400),
+                              backgroundColor: WidgetStatePropertyAll(Colors.blue),
                             ), 
                             child: const Text("Register Now",style: TextStyle(color: Colors.white),),
                           ),

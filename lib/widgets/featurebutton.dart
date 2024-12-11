@@ -3,11 +3,11 @@
 import 'package:campusbuddy/data/functions.dart';
 import 'package:flutter/material.dart';
 
-class CircleButton extends StatelessWidget{
+class FeatureButton extends StatelessWidget{
   String str="";
   Icon icon=Icon(Icons.abc);
   Color color=Colors.white;
-  CircleButton(String s){
+  FeatureButton(String s){
     str=s;
     if(s=="Check Availability"){
       icon=Icon(Icons.domain,size: 40,color:const Color.fromARGB(255, 255, 255, 255));
@@ -26,7 +26,7 @@ class CircleButton extends StatelessWidget{
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: ()=>{
-        circlebuttonnavigator(str,context)
+        featurebuttonnavigator(str,context)
       }, 
       style: ButtonStyle(
         backgroundColor: WidgetStatePropertyAll(color),

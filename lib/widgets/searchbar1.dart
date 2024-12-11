@@ -3,17 +3,17 @@
 import 'package:campusbuddy/data/constants.dart';
 import 'package:flutter/material.dart';
 
-class Searchbar extends StatefulWidget{
+class Searchbar1 extends StatefulWidget{
   Function func=(){};
-  Searchbar(Function f, {super.key}){
+  Searchbar1(Function f, {super.key}){
     func=f;
   }
 
   @override
-  State<Searchbar> createState() => _SearchbarState();
+  State<Searchbar1> createState() => _Searchbar1State();
 }
 
-class _SearchbarState extends State<Searchbar> {
+class _Searchbar1State extends State<Searchbar1> {
   final TextEditingController _controller=TextEditingController();
 
   String query="";
@@ -38,7 +38,7 @@ class _SearchbarState extends State<Searchbar> {
       style: const TextStyle(color: Colors.black),
       decoration: InputDecoration(
         constraints: BoxConstraints(
-          maxWidth: width-20,  //made slight difference (40->60) so that it can fit in checkavl page
+          maxWidth: width-60,  //made slight difference (40->60) so that it can fit in checkavl page
           maxHeight: 40
         ),
         border: OutlineInputBorder(
