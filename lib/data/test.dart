@@ -4,15 +4,16 @@ import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 var content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
 class Event{
-  String title="",date="",time="",venue="",org="";
+  String title="",date="",time="",venue="",org="",url="";
   bool inter=false;
-  Event(String t,String d,String ti,String v,String o,bool b){
+  Event(String t,String d,String ti,String v,String o,String u,bool b){
     title=t;
     time=ti;
     date=d;
     venue=v;
     org=o;
     inter=b;
+    url=u;
   }
 }
 List<Event> events=[
@@ -22,6 +23,7 @@ List<Event> events=[
     "10:00 A.M",
     "CSED Hall",
     "CSEA",
+    "https://img.freepik.com/free-photo/top-view-plastic-objects-arrangement_23-2149439627.jpg",
     true,
   ),
   Event(
@@ -30,6 +32,7 @@ List<Event> events=[
     "03:00 P.M",
     "Auditorium",
     "ECEA",
+    "https://media.istockphoto.com/id/1295274245/photo/random-multicolored-spheres-computer-generated-abstract-form-of-large-and-small-balls-3d.jpg?s=612x612&w=0&k=20&c=q7NOl28YxIIOqKu6em50VlKrg6ISFyVww_nLOCr5W_A=",
     true,
   ),
   Event(
@@ -38,6 +41,7 @@ List<Event> events=[
     "09:00 A.M",
     "Seminar Hall",
     "IEEE",
+    "https://img.freepik.com/free-photo/top-view-plastic-objects-arrangement_23-2149439627.jpg",
     false,
   ),
   Event(
@@ -46,6 +50,7 @@ List<Event> events=[
     "10:00 A.M",
     "SSL",
     "CSEA",
+    "https://media.istockphoto.com/id/1295274245/photo/random-multicolored-spheres-computer-generated-abstract-form-of-large-and-small-balls-3d.jpg?s=612x612&w=0&k=20&c=q7NOl28YxIIOqKu6em50VlKrg6ISFyVww_nLOCr5W_A=",
     false,
   ),
 ];
@@ -53,10 +58,63 @@ List orgs=[
   "ALL","CSEA","ECEA","IEEE","EEA","MEA","CEA"
 ];
 
-List notifications=[
-  "Exam scheduled in CCC T1",
-  "SSL reserved for Training",
-  "Tathva 2024",
+enum NotType{
+  general,
+  festival,
+  fest,
+  event
+}
+
+class Notify{
+  String title="";
+  String content="";
+  NotType type=NotType.general;
+  DateTime startDate=DateTime(0);
+  DateTime endDate=DateTime(0);
+  TimeOfDay startTime=TimeOfDay.now();
+  TimeOfDay endTime=TimeOfDay.now();
+  String venue="";
+  //general
+  Notify.four(String t,String c,NotType n){
+    title=t;
+    content=c;
+    type=n;
+  }
+  //festival
+  Notify.one(String t,String c,NotType n,DateTime d){
+    title=t;
+    content=c;
+    type=n;
+    startDate=d;
+  }
+  //fest
+  Notify.two(String t,String c,NotType n,DateTime s,DateTime e){
+    title=t;
+    content=c;
+    type=n;
+    startDate=s;
+    endDate=e;
+  }
+  //event
+  Notify.three(String t,String c,NotType n,DateTime d,TimeOfDay s,TimeOfDay e,String v){
+    title=t;
+    content=c;
+    type=n;
+    startDate=d;
+    startTime=s;
+    endTime=e;
+    venue=v;
+  }
+  Notify(){}
+}
+
+
+
+List<Notify> notifys=[
+  Notify.two("Ragam 2025","Cultural Fest of NITC", NotType.fest,DateTime(2025,03,13),DateTime(2025,03,15)),
+  Notify.four("Reminder: Fee payment","The last date for paying the tution fees has been extended till 19th December", NotType.general),
+  Notify.one("Holi","", NotType.festival,DateTime(2025,03,17)),
+  Notify.three("Availability of Terminal-1","Terminal-1 has been reserved for examination of PhD scholars", NotType.event,DateTime(2024,12,12),TimeOfDay(hour: 9, minute: 0),TimeOfDay(hour: 12, minute: 30),"CCC"),
 ];
 
 List<Appointment> apps=[

@@ -37,7 +37,7 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context){
     return Scaffold(
       // endDrawerEnableOpenDragGesture: false,
-      backgroundColor: const Color.fromARGB(255, 27, 27, 27),
+      backgroundColor: const Color.fromARGB(255, 235, 235, 235),
       body: currentwidget,
       // endDrawer: Drawer(
       //   width: MediaQuery.of(context).size.width/1.5,
@@ -46,8 +46,8 @@ class _MainScreenState extends State<MainScreen> {
       //     padding: const EdgeInsets.all(0),
       //     children: [
       //       const DrawerHeader(
-      //         decoration: BoxDecoration(color: Color.fromARGB(255, 27, 27, 27),),
-      //         child: Text("NITC",style: TextStyle(color: Colors.white,fontSize: 40,fontWeight: FontWeight.bold),),
+      //         decoration: BoxDecoration(color: Color.fromARGB(255, 235, 235, 235),),
+      //         child: Text("NITC",style: TextStyle(color: Colors.black,fontSize: 40,fontWeight: FontWeight.bold),),
       //       ),
       //       ListTile(title: const Text("Book a venue"),onTap: ()=>{},splashColor: const Color.fromARGB(255, 172, 172, 172),visualDensity: const VisualDensity(vertical: -4),),
       //       // ListTile(title: const Text("Schedule an event"),onTap: ()=>{},splashColor: const Color.fromARGB(255, 172, 172, 172),visualDensity: const VisualDensity(vertical: -4),),
@@ -57,20 +57,20 @@ class _MainScreenState extends State<MainScreen> {
       // ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        backgroundColor: Color.fromARGB(255, 27, 27, 27),
+        backgroundColor: Color.fromARGB(255, 255, 255, 255),
         elevation: 0,
         enableFeedback: false,
         items:const [
-          BottomNavigationBarItem(icon: Icon(Icons.home_outlined,color: Colors.white,),label:"Home",activeIcon: Icon(Icons.home,color: Colors.white,)),
-          BottomNavigationBarItem(icon: Icon(Icons.event_outlined,color: Colors.white,),label: "Events",activeIcon: Icon(Icons.event,color: Colors.white,)),
-          BottomNavigationBarItem(icon: Icon(Icons.book_outlined,color: Colors.white,),label: "Resources",activeIcon: Icon(Icons.book,color: Colors.white,)),
-          BottomNavigationBarItem(icon: Icon(Icons.calendar_month_outlined,color: Colors.white,),label: "Timetable",activeIcon: Icon(Icons.calendar_month,color: Colors.white,)),   
+          BottomNavigationBarItem(icon: Icon(Icons.home_outlined,color: Colors.grey,),label:"Home",activeIcon: Icon(Icons.home,color: Colors.black,)),
+          BottomNavigationBarItem(icon: Icon(Icons.event_outlined,color: Colors.grey,),label: "Events",activeIcon: Icon(Icons.event,color: Colors.black,)),
+          BottomNavigationBarItem(icon: Icon(Icons.book_outlined,color: Colors.grey,),label: "Resources",activeIcon: Icon(Icons.book,color: Colors.black,)),
+          BottomNavigationBarItem(icon: Icon(Icons.calendar_month_outlined,color: Colors.grey,),label: "Timetable",activeIcon: Icon(Icons.calendar_month,color: Colors.black,)),   
         ],
-        unselectedLabelStyle: const TextStyle(color: Colors.white),
-        selectedLabelStyle: const TextStyle(color: Colors.white,fontWeight: FontWeight.bold),
+        unselectedLabelStyle: const TextStyle(color: Colors.grey),
+        selectedLabelStyle: const TextStyle(color: Colors.black,fontWeight: FontWeight.bold),
         showUnselectedLabels: true,
-        unselectedItemColor: Colors.white,
-        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.grey,
+        selectedItemColor: Colors.black,
         onTap: (value){
           getPage(value);
           print(value);

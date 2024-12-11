@@ -34,8 +34,9 @@ class BookVenueForm extends StatelessWidget{
           ElevatedButton(
             onPressed: (){
               func(controller.text,venue);
+              FocusScope.of(context).unfocus();
               Navigator.pop(context);
-              SnackBar(content: Text("sent request"),);
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("sent request"),));
             },
             child: Text("Send request"),
           )

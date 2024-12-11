@@ -1,6 +1,6 @@
-import 'package:campusbuddy/data/constants.dart';
 import 'package:campusbuddy/data/functions.dart';
 import 'package:campusbuddy/data/test.dart';
+import 'package:campusbuddy/widgets/buttons.dart';
 import 'package:campusbuddy/widgets/searchbar.dart';
 import 'package:campusbuddy/widgets/venueinfobox.dart';
 import 'package:flutter/material.dart';
@@ -34,6 +34,7 @@ class _BookVenuePageState extends State<BookVenuePage> {
       timetext="Select time";
       a=false;
       b=false;
+      isdateentered=false;
     });
   }
 
@@ -50,6 +51,18 @@ class _BookVenuePageState extends State<BookVenuePage> {
   Widget build(BuildContext context) {
     Future<void> selectDate()async {
       DateTime? picked=await showDatePicker(
+        builder: (context, child) {
+          return Theme(
+            data: Theme.of(context).copyWith(
+              colorScheme: const ColorScheme.light(
+              primary: Colors.red, // header background color
+              onPrimary: Colors.black, // header text color
+              onSurface: Colors.black, // body text color
+            ),
+            ),
+            child: child!,
+          );
+        },
         context: context,
         firstDate: DateTime(2020),
         lastDate: DateTime(2100),
@@ -126,38 +139,8 @@ class _BookVenuePageState extends State<BookVenuePage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  ElevatedButton(
-                    onPressed: ()=>selectDate(),
-                    style: ButtonStyle(
-                      shape: WidgetStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.circular(5),),),
-                      backgroundColor: WidgetStatePropertyAll(Colors.red.shade400),
-                      fixedSize: WidgetStatePropertyAll(Size.fromWidth(width/2.5)),
-                    ), 
-                    child:Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        const Icon(Icons.calendar_today,color: Colors.white,size: 20,), 
-                        //SizedBox(width:5),
-                        Text(datetext,style: const TextStyle(color: Colors.white),),
-                      ],
-                    )                
-                  ),
-                  ElevatedButton(
-                    onPressed: ()=>selectTime(),
-                    style: ButtonStyle(
-                      shape: WidgetStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.circular(5),),),
-                      backgroundColor: WidgetStatePropertyAll(Colors.red.shade400),
-                      fixedSize: WidgetStatePropertyAll(Size.fromWidth(width/2.5)),
-                    ), 
-                    child:Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        const Icon(Icons.access_time,color: Colors.white,size: 20,), 
-                        //SizedBox(width:5),
-                        Text(timetext,style: const TextStyle(color: Colors.white),),
-                      ],
-                    )                
-                  ),
+                  DateSelectionButton(selectDate,datetext),
+                  TimeSelectionButton(selectTime,timetext),
                 ],
               ),
             ),

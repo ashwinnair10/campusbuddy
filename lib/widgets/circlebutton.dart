@@ -1,31 +1,52 @@
-// ignore_for_file: must_be_immutable
+// ignore_for_file: must_be_immutable, prefer_const_constructors
 
 import 'package:campusbuddy/data/functions.dart';
 import 'package:flutter/material.dart';
 
 class CircleButton extends StatelessWidget{
   String str="";
+  Icon icon=Icon(Icons.abc);
+  Color color=Colors.white;
   CircleButton(String s){
     str=s;
+    if(s=="Check Availability"){
+      icon=Icon(Icons.domain,size: 40,color:const Color.fromARGB(255, 255, 255, 255));
+      color=Colors.red;
+    }
+    if(s=="Book Venue"){
+      icon=Icon(Icons.collections_bookmark,size: 40,color:const Color.fromARGB(255, 255, 255, 255));
+      color=Colors.blue;
+    }
+    if(s=="Directory"){
+      icon=Icon(Icons.list,size: 40,color:const Color.fromARGB(255, 255, 255, 255));
+      color=Colors.green;
+    }
   }
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: ()=>{
+    return ElevatedButton(
+      onPressed: ()=>{
         circlebuttonnavigator(str,context)
       }, 
+      style: ButtonStyle(
+        backgroundColor: WidgetStatePropertyAll(color),
+        shape: WidgetStatePropertyAll(
+          RoundedRectangleBorder(
+            side: BorderSide.none,
+            borderRadius:BorderRadius.circular(10)
+          )
+        )
+      ),
       child:SizedBox(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [ 
-            CircleAvatar(radius: 40,backgroundColor: Colors.grey,), 
-            SizedBox(height: 5,),
-            Text(str,style: TextStyle(color:Colors.white),maxLines: 2,textAlign: TextAlign.center,),
-            Spacer(),
-          ],
-        ),
         width: 80,
         height: 130,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [ 
+            icon,
+            Text(str,style: TextStyle(color:const Color.fromARGB(255, 255, 255, 255)),maxLines: 2,textAlign: TextAlign.center,),
+          ],
+        ),
       ),
     );
   }

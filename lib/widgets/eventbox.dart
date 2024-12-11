@@ -5,7 +5,7 @@ import 'package:campusbuddy/data/test.dart';
 import 'package:flutter/material.dart';
 
 class EventBox extends StatefulWidget{
-  Event event=Event("","","","","",false);
+  Event event=Event("","","","","","",false);
   EventBox(Event e, {super.key}){
     event=e;
   }

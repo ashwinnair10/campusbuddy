@@ -5,21 +5,28 @@ import 'package:campusbuddy/data/test.dart';
 import 'package:flutter/material.dart';
 
 class EventImageBox extends StatelessWidget{
-  Event event=Event("","","","","",false);
+  Event event=Event("","","","","","",false);
   EventImageBox(Event e){
     event=e;
   }
 
   @override
   Widget build(BuildContext context){
-    return Padding(padding: const EdgeInsets.all(10),
+    return Padding(padding: const EdgeInsets.fromLTRB(0,10,0,10),
       child:Stack(
         alignment: Alignment.bottomRight,
         children: [
           Container(
-            // width: width-20,
+            width: width-20,
             height: width*0.67,
-            decoration: BoxDecoration(gradient: LinearGradient(colors: [Colors.red,Colors.black])),
+            decoration: BoxDecoration(
+              gradient: LinearGradient(colors: [Colors.red,Colors.black]),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child:ClipRRect(
+              child:Image.network(event.url,fit: BoxFit.cover,),
+              borderRadius: BorderRadius.circular(10),
+            ),
           ),
           SizedBox(
             height: width*0.67,

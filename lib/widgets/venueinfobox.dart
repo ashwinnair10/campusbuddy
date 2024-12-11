@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:campusbuddy/data/constants.dart';
 import 'package:campusbuddy/data/test.dart';
 import 'package:campusbuddy/widgets/bookvenueform.dart';
@@ -7,7 +9,7 @@ class VenueInfoBox extends StatelessWidget{
   bool isdateentered=false;
   Venue venue=def;
   Function func=(){};
-  VenueInfoBox(Venue v,bool check,Function f){
+  VenueInfoBox(Venue v,bool check,Function f, {super.key}){
     isdateentered=check;
     venue=v;
     func=f;
@@ -15,7 +17,7 @@ class VenueInfoBox extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(0,10,0,0,),
+      padding: const EdgeInsets.fromLTRB(10,10,10,0,),
       child:Container(
         width:width,
         //height:width*0.75,
@@ -51,7 +53,7 @@ class VenueInfoBox extends StatelessWidget{
                       return SimpleDialog(
                         children: [
                           if(events.isEmpty)
-                          ListTile(
+                          const ListTile(
                             title: Text("No events scheduled"),
                           )
                           else
@@ -67,7 +69,7 @@ class VenueInfoBox extends StatelessWidget{
                   style: ButtonStyle(
                     shape: WidgetStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.circular(5),),),
                     backgroundColor: WidgetStatePropertyAll(Colors.red.shade400),
-                    fixedSize: !isdateentered? WidgetStatePropertyAll(Size.fromWidth(width-40)):const WidgetStatePropertyAll(Size.fromWidth(double.infinity)), 
+                    fixedSize: !isdateentered? WidgetStatePropertyAll(Size.fromWidth(width-60)):const WidgetStatePropertyAll(Size.fromWidth(double.infinity)), 
                   ), 
 
                   child: const Text("See scheduled events",style: TextStyle(color: Colors.white),)                

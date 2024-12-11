@@ -20,6 +20,7 @@ class _HomePageState extends State<HomePage> {
       padding: const EdgeInsets.fromLTRB(10,30,10,0),
       child: SingleChildScrollView(
         child:Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             AppBar(
               toolbarHeight: 20,
@@ -27,22 +28,13 @@ class _HomePageState extends State<HomePage> {
               elevation: 0,
               flexibleSpace: Row(
                 children: [
-                  const Text("CampusBuddy",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20),),
+                  const Text("CampusBuddy",style: TextStyle(color: Color.fromARGB(255, 0, 137, 172),fontWeight: FontWeight.bold,fontSize: 20),),
                   const Spacer(),
-                  IconButton(onPressed: ()=>{Navigator.push(context,MaterialPageRoute(builder: (context)=>ProfilePage()))},icon: const Icon(Icons.account_circle,color: Colors.white,),),
+                  IconButton(onPressed: ()=>{Navigator.push(context,MaterialPageRoute(builder: (context)=>ProfilePage()))},icon: const Icon(Icons.account_circle,color: Colors.black,),padding: EdgeInsets.all(0),),
                 ],
               ),
               actions: [Container()],
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                CircleButton("Check Availability"),
-                CircleButton("Book Venue"),
-                CircleButton("Directory"),
-              ],
-            ), 
-            Divider(color: Colors.grey.shade600,),
             CarouselSlider(
               items: [
                 for(int i=0;i<events.length;i++)
@@ -55,10 +47,19 @@ class _HomePageState extends State<HomePage> {
                 viewportFraction:  1,
               ),
             ),
-            Divider(color: Colors.grey.shade600,),
+            // Divider(color: Colors.grey.shade600,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                CircleButton("Check Availability"),
+                CircleButton("Book Venue"),
+                CircleButton("Directory"),
+              ],
+            ), 
+            // Divider(color: Colors.grey.shade600,),
             Padding(
-              padding: EdgeInsets.all(10),
-              child: Text("Notifications",style: TextStyle(color: Colors.white,fontSize: 25,fontWeight: FontWeight.bold),),
+              padding: EdgeInsets.fromLTRB(0,30,0,10),
+              child: Text("Feed",style: TextStyle(color: const Color.fromARGB(255, 0, 0, 0),fontSize: 20,fontWeight: FontWeight.bold),),
             ),
             NotificationList(),
           ],
