@@ -2,7 +2,7 @@
 
 import 'package:campusbuddy/data/constants.dart';
 import 'package:campusbuddy/data/test.dart';
-import 'package:campusbuddy/widgets/bookvenueform.dart';
+import 'package:campusbuddy/screens/bookvenueformpage.dart';
 import 'package:campusbuddy/widgets/scheduledeventslist.dart';
 import 'package:flutter/material.dart';
 
@@ -10,10 +10,16 @@ class VenueInfoBox extends StatelessWidget{
   bool isdateentered=false;
   Venue venue=def;
   Function func=(){};
-  VenueInfoBox(Venue v,bool check,Function f, {super.key}){
+  DateTime date=DateTime(0);
+  TimeOfDay start=TimeOfDay(hour: 0,minute: 0);
+  TimeOfDay end=TimeOfDay(hour: 0,minute: 0);
+  VenueInfoBox(Venue v,bool check,Function f,DateTime d,TimeOfDay s,TimeOfDay e){
     isdateentered=check;
     venue=v;
     func=f;
+    date=d;
+    start=s;
+    end=e;
   }
   @override
   Widget build(BuildContext context) {
@@ -65,14 +71,7 @@ class VenueInfoBox extends StatelessWidget{
                 if(isdateentered)
                 ElevatedButton(
                   onPressed: ()=>{
-                    showDialog(
-                      context: context,
-                      builder: (context) => SimpleDialog(
-                        children: [
-                          BookVenueForm(func,venue)
-                        ],
-                      )
-                    ),
+                    Navigator.push(context,MaterialPageRoute(builder: (context)=>BookVenueForm(func,venue,date,start,end))),
                   },
                   style: ButtonStyle(
                     shape: WidgetStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.circular(5),),),

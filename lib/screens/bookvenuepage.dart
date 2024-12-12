@@ -1,6 +1,7 @@
 import 'package:campusbuddy/data/constants.dart';
 import 'package:campusbuddy/data/functions.dart';
 import 'package:campusbuddy/data/test.dart';
+import 'package:campusbuddy/screens/bookvenueformpage.dart';
 import 'package:campusbuddy/widgets/buttons.dart';
 import 'package:campusbuddy/widgets/searchbar.dart';
 import 'package:campusbuddy/widgets/venueinfobox.dart';
@@ -39,6 +40,7 @@ class _BookVenuePageState extends State<BookVenuePage> {
     });
   }
 
+  
   String datetext="Select date";
   String timetext="Select time";
   bool isdateentered=false;
@@ -47,7 +49,7 @@ class _BookVenuePageState extends State<BookVenuePage> {
   DateTime date=DateTime(0);
   TimeOfDay start=const TimeOfDay(hour: 0, minute: 0);
   TimeOfDay end=const TimeOfDay(hour: 0, minute: 0);
-  
+
   @override
   Widget build(BuildContext context) {
     Future<void> selectDate()async {
@@ -156,7 +158,7 @@ class _BookVenuePageState extends State<BookVenuePage> {
               ),
             ),
             ListView.builder(
-              itemBuilder: (context,index)=>VenueInfoBox(__venues[index],isdateentered,book),
+              itemBuilder: (context,index)=>VenueInfoBox(__venues[index],isdateentered,book,date,start,end),
               itemCount: __venues.length,
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),

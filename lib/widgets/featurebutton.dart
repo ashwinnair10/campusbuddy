@@ -1,5 +1,6 @@
 // ignore_for_file: must_be_immutable, prefer_const_constructors
 
+import 'package:campusbuddy/data/constants.dart';
 import 'package:campusbuddy/data/functions.dart';
 import 'package:flutter/material.dart';
 
@@ -38,7 +39,7 @@ class FeatureButton extends StatelessWidget{
         )
       ),
       child:SizedBox(
-        width: 80,
+        width: width/5,
         height: 130,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
