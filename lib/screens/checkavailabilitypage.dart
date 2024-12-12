@@ -62,6 +62,7 @@ class _CheckAvailabilityPageState extends State<CheckAvailabilityPage> {
               ),
             ),
             ListView.builder(
+              physics: NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) => Facilitybox(f: _fac[index]),
               itemCount: _fac.length,
               shrinkWrap: true,
