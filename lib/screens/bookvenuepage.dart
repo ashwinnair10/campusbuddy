@@ -1,3 +1,4 @@
+import 'package:campusbuddy/data/constants.dart';
 import 'package:campusbuddy/data/functions.dart';
 import 'package:campusbuddy/data/test.dart';
 import 'package:campusbuddy/widgets/buttons.dart';
@@ -5,7 +6,7 @@ import 'package:campusbuddy/widgets/searchbar.dart';
 import 'package:campusbuddy/widgets/venueinfobox.dart';
 import 'package:flutter/material.dart';
 import 'package:simple_time_range_picker/simple_time_range_picker.dart';
-
+import 'package:intl/intl.dart';
 class BookVenuePage extends StatefulWidget{
   @override
   State<BookVenuePage> createState() => _BookVenuePageState();
@@ -70,7 +71,7 @@ class _BookVenuePageState extends State<BookVenuePage> {
       );
       if(picked!=null){
         setState(() {
-          datetext=picked.toString().split(" ")[0];
+          datetext=DateFormat.MMMEd().format(picked);
           if(datetext!="") {
             a=true;
           }
@@ -87,7 +88,7 @@ class _BookVenuePageState extends State<BookVenuePage> {
       TimeRangePicker.show(
         context: context,
         onStartTimeChange: (value) {
-          timetext="${value.hour}:${value.minute}-${end.hour}:${end.minute}";
+          timetext="${value.format(context)}-${end.format(context)}";
           b=true;
           isdateentered=a&&b;
           start=value;
@@ -99,7 +100,7 @@ class _BookVenuePageState extends State<BookVenuePage> {
           });
         },
         onEndTimeChange: (value) {
-          timetext="${start.hour}:${start.minute}-${value.hour}:${value.minute}";
+          timetext="${start.format(context)}-${value.format(context)}";
           b=true;
           isdateentered=a&&b;
           end=value;
@@ -111,7 +112,7 @@ class _BookVenuePageState extends State<BookVenuePage> {
           });
         },
         onSubmitted: (value){
-          timetext="${value.startTime?.hour}:${value.startTime?.minute}-${value.endTime?.hour}:${value.endTime?.minute}";
+          timetext="${value.startTime?.format(context)}-${value.endTime?.format(context)}";
           b=true;
           isdateentered=a&&b;
           start=value.startTime!;
@@ -127,7 +128,7 @@ class _BookVenuePageState extends State<BookVenuePage> {
     }
 
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255,27,27,27),
+      backgroundColor: const Color.fromARGB(255,235,235,235),
       body:Padding(
         padding: const EdgeInsets.fromLTRB(10,40,10,20),
         child:SingleChildScrollView(child:Column(
@@ -136,12 +137,22 @@ class _BookVenuePageState extends State<BookVenuePage> {
             Searchbar(search),
             Padding(
               padding: const EdgeInsets.fromLTRB(0,10,0,0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  DateSelectionButton(selectDate,datetext),
-                  TimeSelectionButton(selectTime,timetext),
-                ],
+              child:Container(
+                width: width,
+                height: 80,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10),
+                  //border: Border.all(color: Colors.grey,width: 2)
+                ),
+                child:Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    DateSelectionButton(selectDate,datetext,a),
+                    VerticalDivider(thickness: 0,width: 0,color: Colors.grey,),
+                    TimeSelectionButton(selectTime,timetext,b),
+                  ],
+                ),
               ),
             ),
             ListView.builder(

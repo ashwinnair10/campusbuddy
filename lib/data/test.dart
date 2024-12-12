@@ -1,4 +1,3 @@
-import 'package:campusbuddy/data/facilityclass.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
@@ -122,7 +121,7 @@ List<Appointment> apps=[
     startTime: DateTime.now(),
     endTime: DateTime.now().add(Duration(minutes: 10)),
     subject: 'Meeting1',
-    color: Colors.blue,
+    color: const Color.fromARGB(255, 33, 243, 121),
     startTimeZone: '',
     endTimeZone: '',
   ),
@@ -130,7 +129,7 @@ List<Appointment> apps=[
     startTime: DateTime.now(),
     endTime: DateTime.now().add(Duration(minutes: 10)),
     subject: 'Meeting2',
-    color: Colors.blue,
+    color: const Color.fromARGB(255, 243, 110, 33),
     startTimeZone: '',
     endTimeZone: '',
   ),
@@ -138,7 +137,7 @@ List<Appointment> apps=[
     startTime: DateTime.now(),
     endTime: DateTime.now().add(Duration(minutes: 10)),
     subject: 'Meeting3',
-    color: Colors.blue,
+    color: const Color.fromARGB(255, 236, 33, 243),
     startTimeZone: '',
     endTimeZone: '',
   ),
@@ -146,7 +145,7 @@ List<Appointment> apps=[
     startTime: DateTime.now(),
     endTime: DateTime.now().add(Duration(minutes: 10)),
     subject: 'Meeting4',
-    color: Colors.blue,
+    color: const Color.fromARGB(255, 9, 134, 26),
     startTimeZone: '',
     endTimeZone: '',
   ),
@@ -197,25 +196,27 @@ class VEvent{
 }
 class Venue{
   String name="";
+  String url="";
   TimeOfDay open=TimeOfDay(hour: 0, minute: 0);
   TimeOfDay close=TimeOfDay(hour: 0, minute: 0);
   List<VEvent> events=[];
-  Venue(String n,TimeOfDay o,TimeOfDay c){
+  Venue(String n,TimeOfDay o,TimeOfDay c,String u){
     name=n;
     open=o;
     close=c;
+    url=u;
   }
   void addEvent(VEvent v){
     events.add(v);
   }
 }
 
-Venue ccc=Venue("CCC",TimeOfDay(hour: 9,minute: 0),TimeOfDay(hour: 11,minute: 45));
-Venue ssl=Venue("SSL",TimeOfDay(hour: 9,minute: 0),TimeOfDay(hour: 11,minute: 45));
-Venue oat=Venue("OAT",TimeOfDay(hour: 9,minute: 0),TimeOfDay(hour: 11,minute: 45));
-Venue aud=Venue("Auditorium",TimeOfDay(hour: 9,minute: 0),TimeOfDay(hour: 11,minute: 45));
-Venue nsl=Venue("NSL",TimeOfDay(hour: 9,minute: 0),TimeOfDay(hour: 11,minute: 45));
-Venue def=Venue("",TimeOfDay(hour: 0,minute: 0),TimeOfDay(hour: 0,minute: 0));
+Venue ccc=Venue("CCC",TimeOfDay(hour: 9,minute: 0),TimeOfDay(hour: 11,minute: 45),"https://claytonglass.co.uk/wp-content/uploads/2019/04/ed-robertson-ON6Xw8XEUQ8-unsplash-1024x683.jpeg");
+Venue ssl=Venue("SSL",TimeOfDay(hour: 9,minute: 0),TimeOfDay(hour: 11,minute: 45),"https://www.letsbuild.com/wp-content/uploads/2023/07/types-of-buildings-construction.jpeg");
+Venue oat=Venue("OAT",TimeOfDay(hour: 9,minute: 0),TimeOfDay(hour: 11,minute: 45),"https://claytonglass.co.uk/wp-content/uploads/2019/04/ed-robertson-ON6Xw8XEUQ8-unsplash-1024x683.jpeg");
+Venue aud=Venue("Auditorium",TimeOfDay(hour: 9,minute: 0),TimeOfDay(hour: 11,minute: 45),"https://www.letsbuild.com/wp-content/uploads/2023/07/types-of-buildings-construction.jpeg");
+Venue nsl=Venue("NSL",TimeOfDay(hour: 9,minute: 0),TimeOfDay(hour: 11,minute: 45),"https://www.ft.com/__origami/service/image/v2/images/raw/ftcms%3Af1627e9c-e2ce-4bad-ab16-1ba4028d97c0?source=next-article&fit=scale-down&quality=highest&width=1440&dpr=1");
+Venue def=Venue("",TimeOfDay(hour: 0,minute: 0),TimeOfDay(hour: 0,minute: 0),"https://www.letsbuild.com/wp-content/uploads/2023/07/types-of-buildings-construction.jpeg");
 
 VEvent vdef=VEvent("","",TimeOfDay(hour: 0, minute: 0),TimeOfDay(hour: 0,minute: 0),DateTime(0));
 

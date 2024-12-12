@@ -49,7 +49,7 @@ class _InterestedEventsState extends State<InterestedEvents> {
       children:[
         Searchbar(search),
         Padding(
-          padding: const EdgeInsets.fromLTRB(10,20,10,0),
+          padding: const EdgeInsets.fromLTRB(0,10,0,10),
           child:SizedBox(
             width: width,
             height:90,
@@ -63,7 +63,7 @@ class _InterestedEventsState extends State<InterestedEvents> {
         ),
         ListView.builder(itemBuilder: (context, index) {
           return EventBox(_events[index]);
-        },itemCount: _events.length,shrinkWrap: true,physics: const NeverScrollableScrollPhysics(),),
+        },itemCount: _events.length,shrinkWrap: true,physics: const NeverScrollableScrollPhysics(),padding: EdgeInsets.fromLTRB(0,10,0,0),),
       ],
     );
   }

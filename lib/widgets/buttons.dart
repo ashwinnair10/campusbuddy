@@ -1,61 +1,82 @@
-// ignore_for_file: must_be_immutable
+// ignore_for_file: must_be_immutable, prefer_const_constructors
 
-import 'package:campusbuddy/data/constants.dart';
 import 'package:flutter/material.dart';
 
 
-class DateSelectionButton extends StatelessWidget{
+class DateSelectionButton extends StatefulWidget{
   Function selectDate=(){};
   String datetext="Select date";
-  DateSelectionButton(Function f,String s){
+  bool flag=false;
+  DateSelectionButton(Function f,String s,bool a){
     selectDate=f;
     datetext=s;
+    flag=a;
   }
+
+  @override
+  State<DateSelectionButton> createState() => _DateSelectionButtonState();
+}
+
+class _DateSelectionButtonState extends State<DateSelectionButton> {
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: ()=>selectDate(),
-      style: ButtonStyle(
-        shape: WidgetStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.circular(5),),),
-        backgroundColor: WidgetStatePropertyAll(Colors.red.shade400),
-        fixedSize: WidgetStatePropertyAll(Size.fromWidth(width/2.5)),
-      ), 
-      child:Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          const Icon(Icons.calendar_today,color: Colors.white,size: 20,), 
-          //SizedBox(width:5),
-          Text(datetext,style: const TextStyle(color: Colors.white),),
-        ],
-      )                
+    return InkResponse(
+      onTap: (){
+        print("tf");
+        widget.selectDate();
+      },
+      onDoubleTap: ()=>widget.selectDate,
+      child:Container(
+        //color: Colors.red,
+        child:Center(
+          child: Row(
+            children: [
+              Icon(Icons.calendar_today,size: 30,color: Colors.blue.shade900),
+              SizedBox(width: 10,),
+              Text(widget.datetext,style: TextStyle(color:widget.flag?Colors.black:Colors.grey),)
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
 
-class TimeSelectionButton extends StatelessWidget{
+class TimeSelectionButton extends StatefulWidget{
   Function selectTime=(){};
   String timetext="Select time";
-  TimeSelectionButton(Function f,String s){
+  bool flag=false;
+  TimeSelectionButton(Function f,String s,bool b){
     selectTime=f;
     timetext=s;
+    flag=b;
   }
+
+  @override
+  State<TimeSelectionButton> createState() => _TimeSelectionButtonState();
+}
+
+class _TimeSelectionButtonState extends State<TimeSelectionButton> {
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: ()=>selectTime(),
-      style: ButtonStyle(
-        shape: WidgetStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.circular(5),),),
-        backgroundColor: WidgetStatePropertyAll(Colors.red.shade400),
-        fixedSize: WidgetStatePropertyAll(Size.fromWidth(width/2.5)),
-      ), 
-      child:Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          const Icon(Icons.access_time,color: Colors.white,size: 20,), 
-          //SizedBox(width:5),
-          Text(timetext,style: const TextStyle(color: Colors.white),),
-        ],
-      )                
+    return InkResponse(
+      onTap: (){
+        print("tf");
+        widget.selectTime();
+      },
+      onDoubleTap: ()=>widget.selectTime,
+      child:Container(
+        //color: Colors.red,
+        child:Center(
+          child: Row(
+            children: [
+              Icon(Icons.access_time,size: 30,color: Colors.blue.shade900,),
+              SizedBox(width: 10,),
+              Text(widget.timetext,style: TextStyle(color:widget.flag?Colors.black:Colors.grey),)
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

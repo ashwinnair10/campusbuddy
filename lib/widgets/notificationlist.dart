@@ -1,7 +1,5 @@
-import 'package:campusbuddy/data/constants.dart';
 import 'package:campusbuddy/data/test.dart';
 import 'package:campusbuddy/widgets/notificationbox.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 class NotificationList extends StatelessWidget{

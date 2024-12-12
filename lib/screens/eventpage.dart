@@ -35,9 +35,9 @@ class _EventPageState extends State<EventPage>{
         children: [
           Row(
             children: [
-              TextButton(onPressed: ()=>getWidget(0), child: Text("List",style: TextStyle(color: value==0?Colors.red.shade400:Colors.black,fontWeight: value==0?FontWeight.bold:FontWeight.normal,),)),
-              TextButton(onPressed: ()=>getWidget(1), child: Text("Interested",style: TextStyle(color: value==1?Colors.red.shade400:Colors.black,fontWeight: value==1?FontWeight.bold:FontWeight.normal),)),
-              TextButton(onPressed: ()=>getWidget(2), child: Text("Calendar",style: TextStyle(color: value==2?Colors.red.shade400:Colors.black,fontWeight: value==2?FontWeight.bold:FontWeight.normal),)),
+              TextButton(onPressed: ()=>getWidget(0), child: Text("List",style: TextStyle(color: value==0?Colors.black:Colors.black,fontWeight: value==0?FontWeight.bold:FontWeight.normal,),)),
+              TextButton(onPressed: ()=>getWidget(1), child: Text("Interested",style: TextStyle(color: value==1?Colors.black:Colors.black,fontWeight: value==1?FontWeight.bold:FontWeight.normal),)),
+              TextButton(onPressed: ()=>getWidget(2), child: Text("Calendar",style: TextStyle(color: value==2?Colors.black:Colors.black,fontWeight: value==2?FontWeight.bold:FontWeight.normal),)),
             ],
           ),
           currentwidget,

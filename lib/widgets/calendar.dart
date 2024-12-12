@@ -5,41 +5,38 @@ import 'package:syncfusion_flutter_calendar/calendar.dart';
 class Calendar extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+      ),
+      padding: EdgeInsets.all(0),
       width: width,
       height: height*0.8,
-      child:SfCalendar(
-        allowAppointmentResize: false,
-        allowDragAndDrop: false,
-        // allowViewNavigation: true,
+      child:ClipRRect(
+        borderRadius: BorderRadius.circular(10),
+        child: SfCalendar(
         view: CalendarView.month,
-        // allowedViews: [
-          // CalendarView.day,
-          // CalendarView.month,
-          // CalendarView.schedule,
-          // CalendarView.timelineDay,
-          // CalendarView.timelineMonth,
-          // CalendarView.timelineWeek,
-          // CalendarView.timelineWorkWeek,
-          // CalendarView.week,
-          // CalendarView.workWeek
-        // ],
         monthViewSettings: MonthViewSettings(
+          
           showAgenda: true,
           agendaViewHeight: -1,
         ),
         dataSource: Ap(apps),
         backgroundColor: Colors.white,
-        cellBorderColor: Colors.red.shade400,
-        selectionDecoration: BoxDecoration(border: Border.all(color: Colors.red,width: 3)),
+        cellBorderColor: Colors.purple,
+        selectionDecoration: BoxDecoration(border: Border.all(color: Colors.purple,width: 3)),
         showDatePickerButton:false,
         showNavigationArrow: true,
-        todayHighlightColor: Colors.red.shade400,
+        todayHighlightColor: Colors.green,
         showTodayButton: true,
         viewNavigationMode: ViewNavigationMode.snap,
-        viewHeaderStyle: ViewHeaderStyle(),
-        headerStyle: CalendarHeaderStyle(textStyle: TextStyle(color: Colors.black),backgroundColor: Colors.red.shade400),
-      ),
+        headerHeight: 50,
+        viewHeaderHeight: 50,
+        viewHeaderStyle: ViewHeaderStyle(
+          dayTextStyle: TextStyle(fontWeight: FontWeight.bold,fontSize: 20)
+        ),
+        headerStyle: CalendarHeaderStyle(textStyle: TextStyle(color: Colors.white),backgroundColor: Colors.purple),
+      ),),
     );
   }
 }
