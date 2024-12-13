@@ -25,12 +25,15 @@ class BookVenueForm extends StatefulWidget{
 
 class _BookVenueFormState extends State<BookVenueForm> {
   TextEditingController event=TextEditingController();
-
   TextEditingController request=TextEditingController();
+  TextEditingController email=TextEditingController();
+  TextEditingController password=TextEditingController();
 
   // BookVenueForm.setDate(DateTime d){
   bool einvalid=false;
   bool rinvalid=false;
+  bool oinvalid=false;
+  bool pinvalid=false;
 
   void test(){
     setState(() {
@@ -46,7 +49,51 @@ class _BookVenueFormState extends State<BookVenueForm> {
       else{
         rinvalid=false;
       }
+      if(email.text.isEmpty){
+        oinvalid=true;
+      }
+      else{
+        oinvalid=false;
+      }
+      if(password.text.isEmpty){
+        pinvalid=true;
+      }
+      else{
+        pinvalid=false;
+      }
     });
+  }
+
+  bool checkacc(){
+    if(!validaccounts.containsKey(email.text.toLowerCase())){
+      showDialog(
+        context: context, 
+        builder: (context)=>AlertDialog(
+          backgroundColor: Colors.white,
+          title: Text("Invalid user"),
+          content: Text("This account is not authorised to perform the action"),
+        ),
+      );
+      return false;
+    }
+    else if(validaccounts[email.text.toLowerCase()]!=password.text){
+      showDialog(
+        context: context, 
+        builder: (context)=>AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10)
+          ),
+          backgroundColor: Colors.white,
+          title: Text("Incorrect credentials"),
+          content: Text("Please enter valid credentials"),
+        ),
+      );
+      return false;
+    }
+    else{
+      print("hello");
+      return true;
+    }
   }
 
   @override
@@ -183,30 +230,89 @@ class _BookVenueFormState extends State<BookVenueForm> {
                 minLines: 20,
                 maxLines: 100,
               ),
+              SizedBox(height: 20,),
+              TextField(
+                controller: email,
+                decoration: InputDecoration(
+                  errorText: oinvalid? 'Field cannot be empty':null,
+                  errorBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.red,),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  focusedErrorBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.red,),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  filled: true,
+                  fillColor: Colors.white,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide.none
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide.none
+                  ),
+                  hintText: "Enter organisation e-mail",
+                  hintStyle: TextStyle(color: Colors.grey),
+
+                ),
+              ),
+              SizedBox(height: 20,),
+              TextField(
+                controller: password,
+                obscureText: true,
+                decoration: InputDecoration(
+                  errorText: pinvalid? 'Field cannot be empty':null,
+                  errorBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.red,),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  focusedErrorBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.red,),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  filled: true,
+                  fillColor: Colors.white,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide.none
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide.none
+                  ),
+                  hintText: "Enter password",
+                  hintStyle: TextStyle(color: Colors.grey),
+
+                ),
+              ),
+              SizedBox(height: 20,),
               ElevatedButton(
                 onPressed: ()=>{
                   test(),
-                  if(!rinvalid&&!einvalid)
-                  showDialog(
-                    context: context, 
-                    builder: (context)=>AlertDialog(
-                      backgroundColor: Colors.white,
-                      title: Text("Submit request?"),
-                      content: Text("Please verify all details carefully"),
-                      actions: [
-                        TextButton(
-                          onPressed: (){
-                            widget.func(event.text,widget.venue);
-                            FocusScope.of(context).unfocus();
-                            Navigator.pop(context);
-                            Navigator.pop(context);
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("sent request"),),);
-                          }, 
-                          child: Text("Submit")
-                        ),
-                      ],
-                    )
-                  ),
+                  if(!rinvalid&&!einvalid&&!oinvalid&&!pinvalid&&checkacc()==true){
+                    showDialog(
+                      context: context, 
+                      builder: (context)=>AlertDialog(
+                        backgroundColor: Colors.white,
+                        title: Text("Submit request?"),
+                        content: Text("Please verify all details carefully"),
+                        actions: [
+                          TextButton(
+                            onPressed: (){
+                              widget.func(event.text,widget.venue);
+                              FocusScope.of(context).unfocus();
+                              Navigator.pop(context);
+                              Navigator.pop(context);
+                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("sent request"),),);
+                            }, 
+                            child: Text("Submit")
+                          ),
+                        ],
+                      ),
+                    ),
+                  }
                 }, 
                 style: ButtonStyle(
                   backgroundColor: WidgetStatePropertyAll(Colors.purple.shade800),

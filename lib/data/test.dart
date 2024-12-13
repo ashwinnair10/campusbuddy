@@ -285,3 +285,8 @@ class Req{
 }
 
 List<Req> requests=[];
+
+Map<String,String> validaccounts={
+  'csea@nitc.ac.in':'csea',
+  'ecea@nitc.ac.in':'ecea',
+};
