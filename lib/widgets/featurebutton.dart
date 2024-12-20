@@ -11,15 +11,15 @@ class FeatureButton extends StatelessWidget{
   FeatureButton(String s){
     str=s;
     if(s=="Check Availability"){
-      icon=Icon(Icons.domain,size: 40,color:const Color.fromARGB(255, 255, 255, 255));
+      icon=Icon(Icons.domain,size: width/10,color:const Color.fromARGB(255, 255, 255, 255));
       color=Colors.red;
     }
     if(s=="Book Venue"){
-      icon=Icon(Icons.collections_bookmark,size: 40,color:const Color.fromARGB(255, 255, 255, 255));
+      icon=Icon(Icons.collections_bookmark,size: width/10,color:const Color.fromARGB(255, 255, 255, 255));
       color=Colors.blue;
     }
     if(s=="Directory"){
-      icon=Icon(Icons.list,size: 40,color:const Color.fromARGB(255, 255, 255, 255));
+      icon=Icon(Icons.list,size: width/10,color:const Color.fromARGB(255, 255, 255, 255));
       color=Colors.green;
     }
   }
@@ -30,6 +30,7 @@ class FeatureButton extends StatelessWidget{
         featurebuttonnavigator(str,context)
       }, 
       style: ButtonStyle(
+        padding: WidgetStatePropertyAll(EdgeInsets.fromLTRB(20,10,20,10)),
         backgroundColor: WidgetStatePropertyAll(color),
         shape: WidgetStatePropertyAll(
           RoundedRectangleBorder(
@@ -45,7 +46,7 @@ class FeatureButton extends StatelessWidget{
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [ 
             icon,
-            Text(str,style: TextStyle(color:const Color.fromARGB(255, 255, 255, 255)),maxLines: 2,textAlign: TextAlign.center,),
+            Text(str,style: TextStyle(color:const Color.fromARGB(255, 255, 255, 255),fontSize: 12),maxLines: 2,textAlign: TextAlign.center,),
           ],
         ),
       ),

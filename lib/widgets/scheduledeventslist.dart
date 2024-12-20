@@ -1,9 +1,11 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:campusbuddy/data/test.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 class ScheduledEventsList extends StatelessWidget{
-  List<VEvent> events=[];
-  ScheduledEventsList(List<VEvent> e){
+  List<Event> events=[];
+  ScheduledEventsList(List<Event> e){
     events=e;
   }
   @override
@@ -24,7 +26,7 @@ class ScheduledEventsList extends StatelessWidget{
             for(int i=0;i<events.length;i++)
             ListTile(
                 title: Text(events[i].name),
-                subtitle: Text("${DateFormat.MMMEd().format(events[i].date)}  ${events[i].start.format(context)}-${events[i].end.format(context)}"),
+                subtitle: Text("${DateFormat.MMMEd().format(events[i].date)}  ${events[i].start.format(context)}-${events[i].end!.format(context)}"),
             ),
           ],
         ),

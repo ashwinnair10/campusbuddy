@@ -1,9 +1,9 @@
 import 'package:campusbuddy/data/constants.dart';
 import 'package:campusbuddy/data/functions.dart';
 import 'package:campusbuddy/data/test.dart';
-import 'package:campusbuddy/screens/bookvenueformpage.dart';
 import 'package:campusbuddy/widgets/buttons.dart';
 import 'package:campusbuddy/widgets/searchbar.dart';
+import 'package:campusbuddy/widgets/searchbar1.dart';
 import 'package:campusbuddy/widgets/venueinfobox.dart';
 import 'package:flutter/material.dart';
 import 'package:simple_time_range_picker/simple_time_range_picker.dart';
@@ -28,8 +28,9 @@ class _BookVenuePageState extends State<BookVenuePage> {
   }
 
   void book(String name,Venue v){
-    requests.add(Req(v,VEvent(name,"org",start,end,date)));
-    v.events.add(VEvent(name,"org",start,end,date));
+    requests.add(Req(v,Event.i(name,"org",start,end,date,v,false,1,0,"")));
+    v.events.add(Event.i(name,"org",start,end,date,v,false,1,0,""));
+    events.add(Event.i(name,"org",start,end,date,v,false,1,0,""));
     setState(() {
       __venues=_venues;
       datetext="Select date";
@@ -136,7 +137,19 @@ class _BookVenuePageState extends State<BookVenuePage> {
         child:SingleChildScrollView(child:Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Searchbar(search),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                IconButton(
+                  onPressed: (){
+                    Navigator.pop(context);
+                  }, 
+                  icon: Icon(Icons.arrow_back),
+                ),
+                Spacer(),
+                Searchbar1(search),
+              ],
+            ),
             Padding(
               padding: const EdgeInsets.fromLTRB(0,10,0,0),
               child:Container(

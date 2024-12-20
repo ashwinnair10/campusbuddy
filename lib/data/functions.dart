@@ -8,10 +8,8 @@ import 'package:flutter/material.dart';
 
 List<Event> eventSearch(List<Event> events,String o){
   Set<Event> set={};
-  set.addAll(events.where((s)=>s.title.toLowerCase().contains(o)).toList());
-  set.addAll(events.where((s)=>s.date.toLowerCase().contains(o)).toList());
-  set.addAll(events.where((s)=>s.time.toLowerCase().contains(o)).toList());
-  set.addAll(events.where((s)=>s.venue.toLowerCase().contains(o)).toList());
+  set.addAll(events.where((s)=>s.name.toLowerCase().contains(o)).toList());
+  set.addAll(events.where((s)=>s.venue.name.toLowerCase().contains(o)).toList());
   set.addAll(events.where((s)=>s.org.toLowerCase().contains(o)).toList());
   return set.toList();
 }
@@ -36,7 +34,7 @@ List<Venue> getVenue(List<Venue> venues,DateTime date,TimeOfDay start,TimeOfDay 
   for(int i=0;i<venues.length;i++){
     print("li   pidwde:$start");
     List<int> k=[];
-    List<VEvent> list=venues[i].events;
+    List<Event> list=venues[i].events;
     if(list.isNotEmpty) {
       print("bleh ${list[0].start}");
     }
@@ -49,11 +47,11 @@ List<Venue> getVenue(List<Venue> venues,DateTime date,TimeOfDay start,TimeOfDay 
     if(k!=[]){
       bool pass=true;
       for(int j=0;j<k.length;j++){
-        print("lis: ${toDouble(list[j].start)},${toDouble(list[j].end)}   pidwde:${toDouble(start)}");
+        print("lis: ${toDouble(list[j].start)},${toDouble(list[j].end!)}   pidwde:${toDouble(start)}");
         if(toDouble(list[j].start)>toDouble(end)) {
           continue;
         }
-        if(toDouble(start)>toDouble(list[j].end)) {
+        if(toDouble(start)>toDouble(list[j].end!)) {
           continue;
         } 
         else {

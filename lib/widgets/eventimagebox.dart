@@ -5,7 +5,7 @@ import 'package:campusbuddy/data/test.dart';
 import 'package:flutter/material.dart';
 
 class EventImageBox extends StatelessWidget{
-  Event event=Event("","","","","","",false);
+  Event event=Event();
   EventImageBox(Event e){
     event=e;
   }
@@ -24,7 +24,7 @@ class EventImageBox extends StatelessWidget{
               borderRadius: BorderRadius.circular(10),
             ),
             child:ClipRRect(
-              child:Image.network(event.url,fit: BoxFit.cover,),
+              child:Image.network(event.img,fit: BoxFit.cover,),
               borderRadius: BorderRadius.circular(10),
             ),
           ),
@@ -37,7 +37,7 @@ class EventImageBox extends StatelessWidget{
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Text(event.title,style: TextStyle(fontSize: width/10,fontWeight: FontWeight.bold,overflow: TextOverflow.ellipsis,color: Colors.white),maxLines: 1,),
+                  Text(event.name,style: TextStyle(fontSize: width/10,fontWeight: FontWeight.bold,overflow: TextOverflow.ellipsis,color: Colors.white),maxLines: 1,),
                   Text("by ${event.org}",style: TextStyle(color: Colors.white,fontWeight: FontWeight.w700,overflow: TextOverflow.ellipsis,fontSize: width/25),maxLines: 1,),
                 ],
               ),

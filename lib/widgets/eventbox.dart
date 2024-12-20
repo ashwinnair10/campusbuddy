@@ -2,10 +2,12 @@
 
 import 'package:campusbuddy/data/constants.dart';
 import 'package:campusbuddy/data/test.dart';
+import 'package:campusbuddy/screens/eventregistrationpage.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class EventBox extends StatefulWidget{
-  Event event=Event("","","","","","",false);
+  Event event=Event();
   EventBox(Event e, {super.key}){
     event=e;
   }
@@ -17,7 +19,7 @@ class EventBox extends StatefulWidget{
 class _EventBoxState extends State<EventBox> {
   void change(){
     setState((){
-      widget.event.inter=!widget.event.inter;
+      widget.event.interested=!widget.event.interested;
     });
   }
 
@@ -39,7 +41,7 @@ class _EventBoxState extends State<EventBox> {
         ),
         backgroundColor: Colors.white,
         collapsedBackgroundColor: Colors.white,
-        title:Text(widget.event.title),
+        title:Text(widget.event.name),
         maintainState: true,
         showTrailingIcon: true,
         leading: const CircleAvatar(radius: 10,backgroundColor: Colors.grey,),
@@ -58,7 +60,7 @@ class _EventBoxState extends State<EventBox> {
                   decoration: const BoxDecoration(
                     gradient: LinearGradient(colors: [Colors.red,Colors.black])
                   ),
-                  child:Image.network(widget.event.url,fit: BoxFit.cover,),
+                  child:Image.network(widget.event.img,fit: BoxFit.cover,),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(10),
@@ -76,11 +78,11 @@ class _EventBoxState extends State<EventBox> {
                         children: [
                           const Icon(Icons.date_range),
                           const SizedBox(width: 5,),
-                          Text(widget.event.date),
+                          Text(DateFormat.MMMEd().format(widget.event.date)),
                           const Spacer(),
                           const Icon(Icons.access_time),
                           const SizedBox(width: 5,),
-                          Text(widget.event.time),
+                          Text(widget.event.start.format(context)),
                         ],
                       ),
                       const SizedBox(height: 5,),
@@ -89,7 +91,7 @@ class _EventBoxState extends State<EventBox> {
                           const Icon(Icons.location_on),
                           const SizedBox(width: 5,),
                           Text(
-                            widget.event.venue,
+                            widget.event.venue.name,
                             style: const TextStyle(
                               overflow: TextOverflow.ellipsis,
                             ),
@@ -111,7 +113,7 @@ class _EventBoxState extends State<EventBox> {
                               children: [
                                 const Text("Interested",style: TextStyle(color: Colors.white),),
                                 const SizedBox(width: 5,),
-                                if(!widget.event.inter)
+                                if(!widget.event.interested)
                                 const Icon(Icons.star_border_rounded,color: Colors.white,)
                                 else
                                 const Icon(Icons.star_rounded,color: Colors.white,),
@@ -120,7 +122,9 @@ class _EventBoxState extends State<EventBox> {
                           ),
                           const Spacer(),
                           ElevatedButton(
-                            onPressed: ()=>{},
+                            onPressed: ()=>{
+                              Navigator.push(context,MaterialPageRoute(builder: (context)=>EventRegistrationPage(widget.event)))
+                            },
                             style: ButtonStyle(
                               shape: WidgetStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.circular(5),),),
                               backgroundColor: WidgetStatePropertyAll(Colors.blue),

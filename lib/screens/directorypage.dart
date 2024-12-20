@@ -12,6 +12,15 @@ class DirectoryPage extends StatelessWidget{
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            AppBar(
+              backgroundColor: Colors.transparent,
+              leading: IconButton(
+                onPressed: (){
+                  Navigator.pop(context);
+                }, 
+                icon: Icon(Icons.arrow_back)
+              ),
+            ),
             Container(
               width: width,
               padding: EdgeInsets.all(10),

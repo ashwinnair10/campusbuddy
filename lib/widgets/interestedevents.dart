@@ -17,7 +17,7 @@ class _InterestedEventsState extends State<InterestedEvents> {
   List<Event> __events=events;
   void findInterested(){
     setState(() {
-      __events=events.where((s)=>s.inter==true).toList();
+      __events=events.where((s)=>s.interested==true).toList();
     });
   }
   late List<Event> _events=__events;
