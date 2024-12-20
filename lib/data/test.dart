@@ -290,3 +290,12 @@ Map<String,String> validaccounts={
   'csea@nitc.ac.in':'csea',
   'ecea@nitc.ac.in':'ecea',
 };
+
+Map<String,dynamic> user={
+  "name":"Sneha Biju Kurup",
+  "roll":"B220068CS",
+  "branch": "CSE",
+  "batch":"CS02",
+  "email":"sneha_b220068cs@nitc.ac.in",
+  "password":"12345",
+};
