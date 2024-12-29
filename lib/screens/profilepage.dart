@@ -28,11 +28,11 @@ class ProfilePage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Container(
-                          padding: EdgeInsets.all(10),
-                          height: 50,
+                          padding: EdgeInsets.symmetric(horizontal:20,vertical: 5),
+                          height: 46,
                           child: Icon(
                             Icons.person,
-                            size: 44,
+                            size: 42,
                           ),
                         ),
                         Column(
@@ -51,11 +51,11 @@ class ProfilePage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Container(
-                          padding: EdgeInsets.all(10),
-                          height: 50,
+                          padding: EdgeInsets.symmetric(horizontal:20,vertical: 5),
+                          height: 46,
                           child: Icon(
                             Icons.calendar_view_day_outlined,
-                            size: 44,
+                            size: 42,
                           ),
                         ),
                         Column(
@@ -74,11 +74,11 @@ class ProfilePage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Container(
-                          padding: EdgeInsets.all(10),
-                          height: 50,
+                          padding: EdgeInsets.symmetric(horizontal:20,vertical: 5),
+                          height: 46,
                           child: Icon(
                             Icons.school,
-                            size: 44,
+                            size: 42,
                           ),
                         ),
                         Column(
@@ -97,11 +97,11 @@ class ProfilePage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Container(
-                          padding: EdgeInsets.all(10),
-                          height: 50,
+                          padding: EdgeInsets.symmetric(horizontal:20,vertical: 5),
+                          height: 46,
                           child: Icon(
                             Icons.apartment_sharp,
-                            size: 44,
+                            size: 42,
                           ),
                         ),
                         Column(
@@ -120,11 +120,11 @@ class ProfilePage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Container(
-                          padding: EdgeInsets.all(10),
-                          height: 50,
+                          padding: EdgeInsets.symmetric(horizontal:20,vertical: 5),
+                          height: 46,
                           child: Icon(
                             Icons.email,
-                            size: 44,
+                            size: 42,
                           ),
                         ),
                         Column(
